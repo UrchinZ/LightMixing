@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title>Light Mixing Project</title>
+	<!--=========================== CSS ====================================-->
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link href="/css/text.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id = "banner">
+		<h1>Light Mixing</h1>
+	</div>
+	<div id = "nav">
+		<ol>
+			<li><a href="#intro">Introduction</a>
+				<ul>
+					<li><a href="#objective">Objective</a></li>
+					<li><a href="#experiment">Experiment</a></li>
+					<li><a href="#background">Background Reading</a></li>
+				</ul>
+			</li>
+			<li><a href="#part">Part List</a>
+				<ul>
+					<li><a href="#electrical">Electrical</a></li>
+					<li><a href="#optmech">Optical and Mechanical</a></li>
+					<li><a href="#control">Control</a></li>
+				</ul>
+			</li>
+			<li><a href="#hardware">Hardware Assembly</a>
+				<ul>
+					<li><a href="#mech">Mechanical Mounting</a></li>
+					<li><a href="#connection">Electrical Connection</a></li>
+				</ul>
+			</li>
+			<li><a href="#software">Software Setup</a>
+				<ul>
+					<li><a href="#labview">Labview for NI MyRIO</a>
+						<ul>
+							<li><a href="#labsys">System Requirement</a></li>
+							<li><a href="#labinstall">Installation</a></li>
+							<li><a href="#labpro">Program Setup</a></li>
+						</ul>
+					</li>
+					<li><a href="#matlab">Matlab for Arduino</a>
+						<ul>
+							<li><a href="#matsys">System Requirement</a></li>
+							<li><a href="#matinstall">Installation</a></li>
+							<li><a href="#matpro">Program Setup</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ol>
+	</div>
+	<div id = "content">
+		<div id ="intro">
+			<h2>1. Introduction</h2>
+			<h3>Objective</h3>
+			<p id = "objective">This project illustrates an application of matrix equations through color mixing. Students will learn to use matrix equation solution to find LED voltage inputs to achieve the desired output color.</p>
+			<h3>Experiment</h3>
+			<p id = "experiment">
+				<a target = "_blank" href="https://www.dropbox.com/s/8ue7f4i1r0c11eh/NSF%20Workshop%202016.mp4?dl=0">Video Demenstration</a>
+				<br>
+				The light mixing apparatus consists of six LEDs, a mixing tube, and an RGB color sensor. The LEDs and the sensor are interfaced to the National Instruments MyRIO. The voltages of the LEDs are adjusted to produce different colors, which are measured by the color sensor. The students will first find the light propagation matrix relating the input voltage to the sensor output. This matrix is then used to find the input voltage generate any desired color. As the system has more inputs (6) than outputs (3) and the inputs are constrained to be positive with upperbounds, non-uniqueness of solution and optimization-based solution will also be considered.
+			</p>
+			<h3>Background Reading</h3>
+			<p id = "background">
+				<ul>
+					<li>Color science: 
+						<a target = "_blank" href="http://www.cs.cornell.edu/courses/cs465/2005fa/lectures/23color/23color.pdf">Cornell Lecture PDF</a>, <a target = "_blank" href="http://docs-hoffmann.de/ciexyz29082000.pdf">Gernot Hoffmann CIE Color Space</a>
+					</li>
+					<li>LEDs and color sensors: 
+						<a target = "_blank" href="http://npoints.com">npoints</a>: LEDs, Color Sensors
+					</li>
+					<li><a target = "_blank" href = "https://www.arduino.cc/en/Tutorial/PWM">PWM (Pulse Width Modulation) </a> is used to vary the current to the LED to control its luminosity. With 100% duty cycle, the PWM pins of myRIO will output 5V. The current applied to the LED is calculated by: Duty Cycle (in percentage) * Voltage Output (5V for myRIO) / resistance.</li>
+				</ul>
+			</p>
+		</div>
+		<div id = "part">
+			<h2>2. Part List</h2>
+				<li id="electrical">Electrical:
+					<ul>
+						<li>Printed PCB board(1)</li>
+						<li>LEDs: Red(1), Green(1), Blue(1), Amber(1), Purple(1), White(1)</a></li>
+						<li>resistors(6): 220 ohms</li>
+						<li>7 male header pins(1)</li>
+						<li>Adafruit TCS34725 Color Sensor(1)</li>
+						<li>Jumper wires: F/F(11) M/M(11)</li>
+					<a target="_blank" href="http://www.digikey.com/short/3ttz4q">Shopping Cart 1</a>
+					<a target="_blank" href="http://www.mouser.com/ProjectManager/ProjectDetail.aspx?AccessID=552b8b22b5">Shopping Cart 2</a>
+					</ul>
+				</li>
+				<li id = "optmech">Optical and Mechanical:
+					<ul>
+						<li>3D printed sensor mount(1)</li>
+						<li>3D printed base(1)</li>
+						<li><a target="_blank" href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=6905">Diffuser DG10-120-MD</a>(1)</li>
+						<li><a target="_blank" href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3279">Convex Lens LA1908-A</a>(1)</li>
+						<li><a target="_blank" href="https://www.thorlabs.com/thorproduct.cfm?partnumber=SM1M30">Lens tube 3" SM1M30</a>(1)</li>
+						<li><a target="_blank" href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3307">Lens tube 0.5" SM1L05</a>(1)</li>
+						<li><a target="_blank" href="https://www.thorlabs.com/thorproduct.cfm?partnumber=SM1A2">Adaptors SM1A2</a>(2)</li>
+						<li>Wax paper</li>
+						<li>Aluminum paper</li>
+					</ul>
+				</li>
+				<li id="control">Control
+					<ul>
+						<li>For running Labview: NI MyRIO, USB cord and power supply.</li>
+						<li>For running Matlab: Arduino Uno and USB cord.</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id = "hardware">
+			<h2>3. Hardware Assembly</h2>
+			<h3>Mechanical Mounting</h3>
+			<p id="mech">
+				<ul>
+					<li>Mixing Tube: 
+						<ul>
+							<li>Obtain a 1” diameter wax paper circle.</li>
+							<li>Take out the retaining ring constraining the diffuser. Take out the diffuser lens and place the wax paper in the old position. </li>
+							<li>Place the diffuser on the wax paper and constrain both wax paper and diffuser with the retaining ring. </li>
+							<li>Crumble the aluminum paper and then stretch it to be somewhat flat. Cut a 2” x 4”  aluminum paper rectangle.</li>
+							<li>Use retaining rings to constrain the convex lens on one end of the 3” tube.</li>
+							<li>Roll the aluminum rectangle into a tube, and place the tube into the 3” tube. Try to make the aluminum tube touch the inner surface of the 3” tube.</li>
+							<li>Place the diffuser tube between the 3” tube and the 0.5” tube. </li>
+							<li>Once rotate in place, both ends of the mixing tube should be female/inward, with one end close to the convex lens.</li>
+						</ul>
+					</li>
+					<li>Sensor Mounting: 
+						<ul>
+							<li>Print the sensor mount file. Sensor could be just pushed into the mount. </li>
+						</ul>
+					</li>
+					<li>LED Base
+						<ul>
+							<li>A PCB board design mounting LEDs are in the Dropbox folder. Once made, LEDs, resistors and pins could be soldered on to the PCB.</li>
+							<li>3D print the Base file in the Dropbox folder. </li>
+							<li>Drill two M3 size holes on the adaptor, each 21.5mm away from the center on a centerline. </li>
+							<li>Place the PCB board on top of the base, and cover the PCB board with the adaptor. Align the holes and screw in. </li>
+						</ul>
+					</li>
+				</ul>
+				There should be a the mounted sensor, adaptor, mixing tube and LED adaptor. Screw the LED adaptor to the mixing tube on the diffuser side, then rotate in the adaptor to the other side of the mixing tube. Clip the mounted sensor to the adaptor so it’s easy to see the mixed light when you need to.
+			</p>
+			<h3>Electrical Connection</h3>
+			<p id="connection">
+				Prep the sensor: Solder some solid core wire to the sensor holes. <br>
+				It is recommended to use color-coded jumper wires to make other connections.<br>
+				<b>For NI MyRio</b>
+				<table>
+					<tr>
+						<td>MyRIO Port A</td>
+						<td>
+							<table>
+								<tr><td>MyRIO pins</td><td>Kit pins</td></tr>
+								<tr><td>Pin 34</td><td>Sensor SDA</td></tr>
+								<tr><td>Pin 33</td><td>Sensor 3.3V</td></tr>
+								<tr><td>Pin 32</td><td>Sensor SCL</td></tr>
+								<tr><td>Pin 31</td><td>Blue LED pin</td></tr>
+								<tr><td>Pin 30</td><td>Sensor GND</td></tr>
+								<tr><td>Pin 29</td><td>Green LED pin</td></tr>
+								<tr><td>Pin 28</td><td>PCB LED GND</td></tr>
+								<tr><td>Pin 27</td><td>Red LED pin</td></tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>MyRIO Port B</td>
+						<td>
+							<table>
+								<tr><td>MyRIO pins</td><td>Kit pins</td></tr>
+								<tr><td>Pin 31</td><td>Amber LED pin</td></tr>
+								<tr><td>Pin 29</td><td>White LED pin</td></tr>
+								<tr><td>Pin 27</td><td>Purple LED</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<b>For Arduino: </b>
+				<table>
+					<tr><td>Arduino pins</td><td>Kit pins</td></tr>
+					<tr><td>A5</td><td>Sensor SCL</td></tr>
+					<tr><td>A4</td><td>Sensor SDA</td></tr>
+					<tr><td>3.3V</td><td>Sensor 3.3V</td></tr>
+					<tr><td>GND</td><td>Sensor GND</td></tr>
+					<tr><td>~3</td><td>Red LED pin</td></tr>
+					<tr><td>~5</td><td>Green LED pin</td></tr>
+					<tr><td>~6</td><td>Blue LED pin</td></tr>
+					<tr><td>~9</td><td>Amber LED pin</td></tr>
+					<tr><td>~10</td><td>Purple LED pin</td></tr>
+					<tr><td>~11</td><td>White LED pin</td></tr>
+					<tr><td>GND</td><td>GND</td></tr>
+				</table>
+				
+			</p>
+		</div>
+		<div id = "software">
+			<h2>4. Software Setup</h2>
+			<h3>Labview for NI MyRIO</h3>
+			<div id="labview">
+				<p id = "labsys"><b>System Requirement:</b> NI MyRIO is compatible with Windows 8.1/8/7/Vista/XP/Server. For the latest info, please visit NI MyRIO website <a target="_blank" href="http://www.ni.com/myrio/">here</a>.</p>
+				<p id = "labinstall"><b>Installation:</b> Two discs are provided in software bundle of NI myRIO kit. Insert DVD1 and install default selection. To activate modules, serial number “S/N” can be located on a label on the front of software bundle package. For online software bundle download, see NI MyRIO website <a target="_blank" href="http://www.ni.com/myrio/setup/getting-started/">here</a>.</p>
+				<p id = "labpro"><b>Program Setup:</b> Download the project software to a directory. Click on “LED RGB Mixing” LabVIEW Project file (LED RGB Mixing.lvproj). On the LabVIEW window, click “Launch LabVIEW”. In the “Project Explorer’ window, expand “Project:LED RGB Mixing.lvproj” and expand “myRIO-1900(...)”. Double click “LED Power Sliders.vi” and the front panel will be open. Before executing the program, make sure myRIO is connected to power and the computer. Click on a right arrow, the run icon, on the top left and execute the program. For more information, see NI MyRIO website <a target="_blank" href="http://www.ni.com/product-documentation/14603/en/">here</a>.</p>
+			</div>
+			<h3>Matlab for Arduino</h3>
+			<div id = "matlab">
+				<p id = "matsys"><b>System Requirement</b>: Please see Matlab and Arduino Website for system requirement. Code works on Windows 8 and Mac OS X El Capitan 10.11.5</p>
+				<p id="matinstall"><b>Installation</b>: </p>
+				<p id="matpro"></p>
+			</div>
+		</div>
+	</div>
+	<div id = "footer"></div>
+</body>
+</html>
