@@ -1,0 +1,13 @@
+body
+{
+	font-family: 'Roboto', sans-serif;
+}
+
+.logo{
+	height: 50px;
+	width: auto;
+}
+
+#footer{
+	padding-top: 100px;
+}

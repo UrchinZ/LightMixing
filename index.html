@@ -5,13 +5,16 @@
 	<title>Light Mixing Project</title>
 	<!--=========================== CSS ====================================-->
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link href="/css/text.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="web/css/layout.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div id = "banner">
+	<div class="container-fluid">
+	<div class = "row" id = "banner">
 		<h1>Light Mixing</h1>
 	</div>
-	<div id = "nav">
+	<div class="row">
+	<div class="col-xs-2" id = "nav">
 		<ol>
 			<li><a href="#intro">Introduction</a>
 				<ul>
@@ -51,9 +54,10 @@
 					</li>
 				</ul>
 			</li>
+			<li><a href="#exe">Exercises</a></li>
 		</ol>
 	</div>
-	<div id = "content">
+	<div class="col-xs-offset-1 col-xs-8" id = "content">
 		<div id ="intro">
 			<h2>1. Introduction</h2>
 			<h3>Objective</h3>
@@ -209,11 +213,54 @@
 			<h3>Matlab for Arduino</h3>
 			<div id = "matlab">
 				<p id = "matsys"><b>System Requirement</b>: Please see Matlab and Arduino Website for system requirement. Code works on Windows 8 and Mac OS X El Capitan 10.11.5</p>
-				<p id="matinstall"><b>Installation</b>: </p>
-				<p id="matpro"></p>
+				<p id="matinstall"><b>Installation</b>: Matlab and Arduino Installation is required. Once installed Arduino, place Adafruit_TCS34725 Folder into your Arduino library folder. The user library is typically under the directory Documents/Arduino/libraries. For more, please read instructions <a target="_blank" href="https://learn.sparkfun.com/tutorials/installing-an-arduino-library">here</a>.</p>
+				<p id="matpro"><b>Program Setup:</b> 
+					<ul>
+						<li>Open light_mixing.ino and upload to the Arduino’s serial port. </li>
+						<li>Open lightmixing.m and change commands if needed.
+							<ul>
+								<li>Serial to Arduino:
+									<ul>
+										<li>test: turns off arduino onboard LED.</li>
+										<li>rand: generate random duty cycles output to each LED.</li>
+										<li>getsensor: serial output sensor rgbc values.</li>
+										<li>getLED: serial output duty cycles assigned to each LED.</li>
+										<li>set color=int: (example: set red=10) assign colored LED to integer percentage duty cycle. No space before and after ‘=’ sign.</li>
+										<li>get color=: (example: get red=) serial output colored LED duty cycle percentage. No space before and after ‘=’ sign.</li>
+										<p>Note: each serial command will return a value, either a confirmation or a formatted data string. If a timeout occurs, check hardware connection, especially to the color sensor. If serial port is unavailable, use instrfind to find the port and fclose it. After running the script too many times, it might also stops working because the computer assigned too many instances of port access. Try restarting the computer.</p>
+									</ul>
+								</li>
+								<li>Matlab data processing:
+									<ul><li>parsing: (example parsing(leds, rgb)) adds serial data to excel file in the folder.</li><p>Note:If Matlab is unable to write into the excel file, it will automatically create a csv file. There are ways to transform a csv into an excel, but if you prefer just working with csv files, open parsing.m function file. Change xlsxread and xlsxwrite to csvread and csvwrite.</p></ul>
+								</li>
+							</ul>
+						</li>
+					<li>Run lightmixing.m file</li>
+					</ul>
+				</p>
 			</div>
 		</div>
+		<div id="exe">
+			<h2>5.Exercises</h2>
+			<p>Detailed exercises can be found in "LED_project_description 03072016 (John Wen's conflicted copy 2016-05-04).pdf"</p>
+		</div>
 	</div>
-	<div id = "footer"></div>
+	</div>
+	<div class="row" id = "footer">
+		<div class="col-xs-8">
+		<img class="logo" src="web/img/rpi_logo.jpg">
+		<img class="logo" src="web/img/LESA.jpg">
+		<img class="logo" src="web/img/NI.jpg">
+		</div>
+		<div class="col-xs-4">
+		<ul id="participants">
+			<li>Professor John Wen (<a target="_blank" href="http://cats-fs.rpi.edu/~wenj/?q=~wenj">Homepage</a>)</li>
+			<li>Zhaoyi Zhang (Judy) Undergraduate Assistant</li>
+			<li>Tim Waryas Undergraduate Assistant</li>
+			<li>Matt Minakais Graduate Assistant</li>
+		</ul>
+		</div>
+	</div>
+	</div>
 </body>
 </html>
