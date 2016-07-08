@@ -7,6 +7,9 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link href="web/css/layout.css" rel="stylesheet" type="text/css">
+	<!--=========================Javascript/jQuery==========================-->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="./web/script/ui.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -16,27 +19,28 @@
 	<div class="row">
 	<div class="col-xs-2" id = "nav">
 		<ol>
-			<li><a href="#intro">Introduction</a>
+			<li id = "opt1"><a href="#intro">Introduction</a>
 				<ul>
 					<li><a href="#objective">Objective</a></li>
 					<li><a href="#experiment">Experiment</a></li>
 					<li><a href="#background">Background Reading</a></li>
+					<li><a href="#started">Getting Started</a></li>
 				</ul>
 			</li>
-			<li><a href="#part">Part List</a>
+			<li id = "opt2"><a href="#part">Part List</a>
 				<ul>
 					<li><a href="#electrical">Electrical</a></li>
 					<li><a href="#optmech">Optical and Mechanical</a></li>
 					<li><a href="#control">Control</a></li>
 				</ul>
 			</li>
-			<li><a href="#hardware">Hardware Assembly</a>
+			<li id="opt3"><a href="#hardware">Hardware Assembly</a>
 				<ul>
 					<li><a href="#mech">Mechanical Mounting</a></li>
 					<li><a href="#connection">Electrical Connection</a></li>
 				</ul>
 			</li>
-			<li><a href="#software">Software Setup</a>
+			<li id = "opt4"><a href="#software">Software Setup</a>
 				<ul>
 					<li><a href="#labview">Labview for NI MyRIO</a>
 						<ul>
@@ -54,11 +58,14 @@
 					</li>
 				</ul>
 			</li>
-			<li><a href="#exe">Exercises</a></li>
+			<li id = "opt5"><a href="#exe">Exercises</a></li>
 		</ol>
 	</div>
 	<div class="col-xs-offset-1 col-xs-8" id = "content">
-		<div id ="intro">
+		<div id = "view">
+			<span><a id = "show">Show All</a></span>
+		</div>
+		<div id ="intro" class="stuff">
 			<h2>1. Introduction</h2>
 			<h3>Objective</h3>
 			<p id = "objective">This project illustrates an application of matrix equations through color mixing. Students will learn to use matrix equation solution to find LED voltage inputs to achieve the desired output color.</p>
@@ -81,9 +88,14 @@
 					<li><a target = "_blank" href = "https://www.arduino.cc/en/Tutorial/PWM">PWM (Pulse Width Modulation) </a> is used to vary the current to the LED to control its luminosity. With 100% duty cycle, the PWM pins of myRIO will output 5V. The current applied to the LED is calculated by: Duty Cycle (in percentage) * Voltage Output (5V for myRIO) / resistance.</li>
 				</ul>
 			</p>
+			<h3> Getting Started</h3>
+			<p id = "started"  class = "note">
+				Go to the Github Repository and download "resource" folder.
+			</p>
 		</div>
-		<div id = "part">
+		<div id = "part" class = "stuff">
 			<h2>2. Part List</h2>
+			<p class = "note">Note: Please navigate to resource/design_files/Hardware for Base, PCB board, and Sensor Mount. </p>
 				<li id="electrical">Electrical:
 					<ul>
 						<li>Printed PCB board(1)</li>
@@ -117,7 +129,7 @@
 				</li>
 			</ul>
 		</div>
-		<div id = "hardware">
+		<div id = "hardware" class = "stuff">
 			<h2>3. Hardware Assembly</h2>
 			<h3>Mechanical Mounting</h3>
 			<p id="mech">
@@ -141,8 +153,8 @@
 					</li>
 					<li>LED Base
 						<ul>
-							<li>A PCB board design mounting LEDs are in the Dropbox folder. Once made, LEDs, resistors and pins could be soldered on to the PCB.</li>
-							<li>3D print the Base file in the Dropbox folder. </li>
+							<li>A PCB board design mounting LEDs are in the Hardware folder. Once made, LEDs, resistors and pins could be soldered on to the PCB.</li>
+							<li>3D print the Base file in the Harware folder. </li>
 							<li>Drill two M3 size holes on the adaptor, each 21.5mm away from the center on a centerline. </li>
 							<li>Place the PCB board on top of the base, and cover the PCB board with the adaptor. Align the holes and screw in. </li>
 						</ul>
@@ -203,21 +215,26 @@
 				
 			</p>
 		</div>
-		<div id = "software">
+		<div id = "software" class = "stuff">
 			<h2>4. Software Setup</h2>
+			<p class = "note">Note: Navigate to "resource/design_files/Software" and navigate to appropriate folder</p>
 			<h3>Labview for NI MyRIO</h3>
 			<div id="labview">
 				<p id = "labsys"><b>System Requirement:</b> NI MyRIO is compatible with Windows 8.1/8/7/Vista/XP/Server. For the latest info, please visit NI MyRIO website <a target="_blank" href="http://www.ni.com/myrio/">here</a>.</p>
 				<p id = "labinstall"><b>Installation:</b> Two discs are provided in software bundle of NI myRIO kit. Insert DVD1 and install default selection. To activate modules, serial number “S/N” can be located on a label on the front of software bundle package. For online software bundle download, see NI MyRIO website <a target="_blank" href="http://www.ni.com/myrio/setup/getting-started/">here</a>.</p>
-				<p id = "labpro"><b>Program Setup:</b> Download the project software to a directory. Click on “LED RGB Mixing” LabVIEW Project file (LED RGB Mixing.lvproj). On the LabVIEW window, click “Launch LabVIEW”. In the “Project Explorer’ window, expand “Project:LED RGB Mixing.lvproj” and expand “myRIO-1900(...)”. Double click “LED Power Sliders.vi” and the front panel will be open. Before executing the program, make sure myRIO is connected to power and the computer. Click on a right arrow, the run icon, on the top left and execute the program. For more information, see NI MyRIO website <a target="_blank" href="http://www.ni.com/product-documentation/14603/en/">here</a>.</p>
+				<p id = "labpro"><b>Program Setup:</b>Click on “LED RGB Mixing” LabVIEW Project file (LED RGB Mixing.lvproj). On the LabVIEW window, click “Launch LabVIEW”. In the “Project Explorer’ window, expand “Project:LED RGB Mixing.lvproj” and expand “myRIO-1900(...)”. Double click “LED Power Sliders.vi” and the front panel will be open. Before executing the program, make sure myRIO is connected to power and the computer. Click on a right arrow, the run icon, on the top left and execute the program. For more information, see NI MyRIO website <a target="_blank" href="http://www.ni.com/product-documentation/14603/en/">here</a>.</p>
 			</div>
 			<h3>Matlab for Arduino</h3>
 			<div id = "matlab">
-				<p id = "matsys"><b>System Requirement</b>: Please see Matlab and Arduino Website for system requirement. Code works on Windows 8 and Mac OS X El Capitan 10.11.5</p>
+				<p id = "matsys"><b>System Requirement</b>: Please see Matlab and Arduino website for system requirement. Code works on Windows 8 and Mac OS X El Capitan 10.11.5</p>
 				<p id="matinstall"><b>Installation</b>: Matlab and Arduino Installation is required. Once installed Arduino, place Adafruit_TCS34725 Folder into your Arduino library folder. The user library is typically under the directory Documents/Arduino/libraries. For more, please read instructions <a target="_blank" href="https://learn.sparkfun.com/tutorials/installing-an-arduino-library">here</a>.</p>
 				<p id="matpro"><b>Program Setup:</b> 
 					<ul>
-						<li>Open light_mixing.ino and upload to the Arduino’s serial port. </li>
+						<li>Open light_mixing.ino and upload to the Arduino’s serial port. 
+							<p class="note">
+								If an upload error occurs, copy paste all code to a new sketch and save. Then try to upload.
+							</p>
+						</li>
 						<li>Open lightmixing.m and change commands if needed.
 							<ul>
 								<li>Serial to Arduino:
@@ -241,8 +258,9 @@
 				</p>
 			</div>
 		</div>
-		<div id="exe">
+		<div id="exe" class = "stuff">
 			<h2>5.Exercises</h2>
+			<p class="note">Please navigate to "resource" folder</p>
 			<p>Detailed exercises can be found in "LED_project_description 03072016 (John Wen's conflicted copy 2016-05-04).pdf"</p>
 		</div>
 	</div>
