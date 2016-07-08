@@ -8,6 +8,17 @@ body
 	width: auto;
 }
 
+.note{
+	font-weight: bold;
+	color: red;
+}
+
 #footer{
 	padding-top: 100px;
 }
+
+#view{
+	text-align: right;
+}
+
+
